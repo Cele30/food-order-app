@@ -1,0 +1,23 @@
+.Toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.Toolbar h3 {
+    width: 400px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+    color: #323251;
+}
+
+
+.Toolbar button {
+    background-color:rgba(244, 246, 248, 0.5) !important;
+    color: #09090B;
+    border-radius: 20px;
+    padding: 20px 0;
+    font-size: 18px;
+}

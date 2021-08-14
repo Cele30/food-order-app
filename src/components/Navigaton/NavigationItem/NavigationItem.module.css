@@ -1,0 +1,31 @@
+.NavigationItem {
+    margin: 15px 0;
+    box-sizing: border-box;
+    width: 60%;
+}
+
+.NavigationItem a {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #898ca2;
+    background-color: #f4f4f4;
+    text-decoration: none;
+    border-radius: 50px;
+    padding: 10px 0;
+}
+
+/* .NavigationItem a svg {
+    height: 100%;
+    width: 30%;
+    background-color: #FEBD11;
+    color: white;
+    border-radius: 50px;
+} */
+
+.NavigationItem a:hover,
+.NavigationItem a:active,
+.NavigationItem a.active {
+    color: white;
+    background-color: rgba(254, 189, 17, 0.7);
+}
