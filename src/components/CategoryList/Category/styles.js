@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 90,
+        width: 100,
         borderRadius: 50,
         marginTop: 10,
         backgroundColor: '#F3F5F7',

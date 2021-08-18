@@ -1,0 +1,14 @@
+.searchBox {
+    background: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.searchInput.open {
+    width: 180px;
+}
+
+.searchInput {
+    transition: 0.4s;
+    width: 0px;
+}

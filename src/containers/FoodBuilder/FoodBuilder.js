@@ -1,12 +1,13 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import { Typography } from '@material-ui/core'
-import classes from './FoodBuilder.module.css'
-
 import burger from '../../assets/burger2.png'
 
-export default function FoodBuilder() {
+import classes from './FoodBuilder.module.css'
+
+function FoodBuilder(props) {
     return (
-        <div className={classes.card}>
+        <div className={classes.card} onClick={() => props.history.push('food-order')}>
             <img className={classes.image}
                 src={burger}
                 alt="burger" />
@@ -15,3 +16,5 @@ export default function FoodBuilder() {
         </div>
     )
 }
+
+export default withRouter(FoodBuilder)

@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from './Category/Category'
+import axios from 'axios'
+import Spinner from '../UI/Spinner/Spinner'
 
 import classes from './CategoryList.module.css'
 
 export default function CategoryList() {
+    const [categories, setCategories] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [selectedCategory, setSelectedCategory] = useState('all')
+
+    useEffect(() => {
+        axios.get('https://food-order-0530-default-rtdb.firebaseio.com/categories.json')
+            .then(res => setCategories(res.data))
+            .finally(() => setLoading(false))
+    }, [])
+
+    const clickHandler = (title) => {
+        setSelectedCategory(title)
+    }
+
     return (
         <div className={classes.CategoryList}>
-            <Category image='https://www.creativefabrica.com/wp-content/uploads/2020/04/23/single-slice-italian-pizza-cartoon-flat-Graphics-3933838-1.jpg' />
-            <Category image='https://cdn1.iconfinder.com/data/icons/restaurants-and-food/98/bugrer-512.png' />
-            <Category image='https://www.creativefabrica.com/wp-content/uploads/2020/04/23/single-slice-italian-pizza-cartoon-flat-Graphics-3933838-1.jpg' />
-            <Category image='https://cdn1.iconfinder.com/data/icons/restaurants-and-food/98/bugrer-512.png' />
-            <Category image='https://www.creativefabrica.com/wp-content/uploads/2020/04/23/single-slice-italian-pizza-cartoon-flat-Graphics-3933838-1.jpg' />
-            <Category image='https://cdn1.iconfinder.com/data/icons/restaurants-and-food/98/bugrer-512.png' />
+            {loading ? <Spinner /> : Object.keys(categories).map(category => (
+                <Category key={category} image={categories[category]} title={category} clicked={clickHandler} selectedCategory={selectedCategory} />
+            ))}
         </div>
     )
 }
