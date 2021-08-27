@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import MenuItem from '../../components/MenuItem/MenuItem'
 import { Grid, Typography, IconButton, List, makeStyles } from '@material-ui/core'
 import { FaSlidersH, FaLongArrowAltRight } from 'react-icons/fa'
 import Spinner from '../../components/UI/Spinner/Spinner'
-
 import FilterItems from '../../components/FIlterItems/FilterItems'
-
-
 import useFetchAll from '../../services/useFetchAll'
+import config from '../../api-config/config.json'
+import useFetch from '../../services/useFetch'
+import { useGlobalContext } from '../../context/menu-context'
+import axios from 'axios'
 
-const urls = ['https://api.spoonacular.com/food/menuItems/search?query=burger&number=2&apiKey=9dbe251a85304324b51ded56c95893e5',
-    'https://api.spoonacular.com/food/menuItems/search?query=pizza&number=2&apiKey=9dbe251a85304324b51ded56c95893e5']
+import InfiniteScroll from 'react-infinite-scroller';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,10 +27,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function MenuItems() {
-    const { data, loading, error } = useFetchAll(urls)
+    const { data, loading, error } = useFetch('https://61263d553ab4100017a68e37.mockapi.io/api/v1/food')
+    const [anchorEl, setAnchorEl] = useState(null);
     const classes = useStyles()
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -37,6 +37,18 @@ export default function MenuItems() {
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popper' : undefined;
+
+    let menuItems = error ? <p>Menu items can't be loaded</p> : <Spinner />
+
+
+    if (data) {
+        menuItems = data.map(item => (
+            <Grid item xs={4} key={item.id} >
+                <MenuItem {...item} />
+            </Grid>
+        ))
+    }
+
 
     return (
         <Grid container alignItems='center'>
@@ -47,15 +59,9 @@ export default function MenuItems() {
             <Grid item xs={6}>
                 <Typography align='right' variant='subtitle1'>View all <IconButton><FaLongArrowAltRight /></IconButton></Typography>
             </Grid>
-
             <List className={classes.root}>
-                {loading ? <Spinner /> : data.map(item => (
-                    <Grid item xs={4} key={item.id} >
-                        <MenuItem {...item} />
-                    </Grid>
-                ))
-                }
-            </List>
+                {menuItems}
+            </List >
         </Grid>
     )
 }

@@ -10,15 +10,15 @@ export default function useFetchAll(urls) {
         const promises = urls.map(url =>
             axios.get(url)
                 .then(res => {
-                    if (res.status === 200) return res.data.menuItems
+                    if (res.status === 200) return res.data
                     throw res
                 })
         )
 
         Promise.all(promises)
             .then(res => {
-                res.flat().forEach(item => item.price = Math.floor(Math.random() * (60 - 30 + 1)) + 30)
-                setData(res.flat())
+
+                setData(res)
             })
             .catch(e => setError(e))
             .finally(() => setLoading(false))

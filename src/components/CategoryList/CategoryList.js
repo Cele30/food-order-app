@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Category from './Category/Category'
-import axios from 'axios'
 import Spinner from '../UI/Spinner/Spinner'
+
+import { useGlobalContext } from '../../context/menu-context'
 
 import classes from './CategoryList.module.css'
 
 export default function CategoryList() {
-    const [categories, setCategories] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [selectedCategory, setSelectedCategory] = useState('all')
-
-    useEffect(() => {
-        axios.get('https://food-order-0530-default-rtdb.firebaseio.com/categories.json')
-            .then(res => setCategories(res.data))
-            .finally(() => setLoading(false))
-    }, [])
-
-    const clickHandler = (title) => {
-        setSelectedCategory(title)
-    }
+    const { categories, loadingCategories } = useGlobalContext()
 
     return (
         <div className={classes.CategoryList}>
-            {loading ? <Spinner /> : Object.keys(categories).map(category => (
-                <Category key={category} image={categories[category]} title={category} clicked={clickHandler} selectedCategory={selectedCategory} />
+            {loadingCategories ? <Spinner /> : Object.keys(categories).map(category => (
+                <Category key={category} image={categories[category]} title={category} />
             ))}
         </div>
     )

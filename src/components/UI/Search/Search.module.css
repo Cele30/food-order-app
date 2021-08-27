@@ -12,3 +12,11 @@
     transition: 0.4s;
     width: 0px;
 }
+
+.btn {
+    background-color:rgba(244, 246, 248, 0.5) !important;
+    color: #09090B !important;
+    border-radius: 20px !important;
+    padding: 20px 0 !important;
+    font-size: 18px !important;
+}

@@ -23,7 +23,7 @@ export default function Home() {
                 <MenuItems />
             </Grid>
             <Grid item xs={4}>
-                <ArticleList />
+                {/* <ArticleList /> */}
             </Grid>
         </>
     )

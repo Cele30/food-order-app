@@ -1,0 +1,17 @@
+{
+    "baseUrl": "https://api.spoonacular.com",
+    "urls": [
+        "https://api.spoonacular.com/food/menuItems/search?query=burger&number=4&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/menuItems/search?query=pizza&number=4&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/menuItems/search?query=salads&number=4&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/menuItems/search?query=chicken&number=4&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/menuItems/search?query=salmon&number=5&apiKey=9dbe251a85304324b51ded56c95893e5"
+    ],
+    "articleUrls": [
+        "https://api.spoonacular.com/food/search?query=italian&number=1&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/search?query=burger&number=1&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/search?query=drink&number=1&apiKey=9dbe251a85304324b51ded56c95893e5",
+        "https://api.spoonacular.com/food/search?query=cocktailnumber=1&apiKey=9dbe251a85304324b51ded56c95893e5"
+    ],
+    "apiKey": "9dbe251a85304324b51ded56c95893e5"
+}
